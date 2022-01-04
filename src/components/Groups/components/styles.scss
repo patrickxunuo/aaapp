@@ -1,0 +1,14 @@
+.create-form {
+  .ant-pro-form-list>div{
+    width: auto !important;
+  }
+  label{
+    display: none !important;
+  }
+  .ant-form-item{
+    margin: 5px;
+  }
+  .ant-pro-form-list-creator-button-bottom{
+    margin: 10px 0;
+  }
+}

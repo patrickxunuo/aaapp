@@ -1,20 +1,24 @@
 import React from 'react';
-import {Button, Space} from "antd";
-import Title from "antd/es/typography/Title";
 import firebase from '../../firebase'
+import {signOut as userSignOut} from "../../actions";
+import {useSelector, useDispatch} from 'react-redux'
+import {Avatar} from "antd";
+
 
 const Home = () => {
+  const dispatch = useDispatch()
+
   const signOut = () => {
     firebase.auth().signOut()
+    userSignOut()(dispatch)
   }
 
   return(
-    <Space>
-      <Title>Home</Title>
-      <Button onClick={signOut}>
-        Sign Out
-      </Button>
-    </Space>
+      <>
+        <button onClick={signOut} className="signout-btn btn">
+          Sign Out
+        </button>
+      </>
   )
 }
 

@@ -1,0 +1,108 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+
+  .footer-wave-container {
+    width: 400px;
+  }
+
+  .footer-wave {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 80px;
+    transition: left 0.5s;
+
+    &-top {
+      width: 80px;
+      height: 40px;
+      background-color: white;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      display: flex;
+      justify-content:center;
+      align-items: center;
+      transition: background-color 0.3s linear;
+      svg{
+        position: relative;
+        top: 10px;
+        stroke: black;
+        stroke-width: 1;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+    }
+
+    &-top.home, &-bot.home {
+      background-color: #b8c1ec;
+    }
+
+    &-top.group, &-bot.group {
+      background-color: #fffffe;
+    }
+
+    &-bot {
+      width: 80px;
+      height: 10px;
+      transition: background-color 0.3s linear;
+    }
+
+    &.home::before, &.home::after,
+    &.group::before, &.group::after{
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      bottom: -5px;
+      border-radius: 50%;
+      transition: box-shadow 0.3s linear;
+    }
+    &.home::before {
+      left: -40px;
+      box-shadow: 6px 15px 0 0 #b8c1ec;
+    }
+
+    &.group::before {
+      left: -40px;
+      box-shadow: 6px 15px 0 0 #fffffe;
+    }
+
+    &.home::after {
+      right: -40px;
+      box-shadow: -6px 15px 0 0 #b8c1ec;
+    }
+
+    &.group::after {
+      right: -40px;
+      box-shadow: -6px 15px 0 0 #fffffe;
+    }
+  }
+
+  &-bottom {
+    display: flex;
+    flex-direction: row;
+
+    .footer-btn {
+      width: 200px;
+      height: 30px;
+      z-index: 5;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:nth-child(1) {
+        background-color: #b8c1ec;
+      }
+
+      &:nth-child(2) {
+        background-color: #fffffe;
+      }
+    }
+  }
+}
+

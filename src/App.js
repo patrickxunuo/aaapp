@@ -1,31 +1,49 @@
-import './App.css';
-import {Routes, Route } from "react-router-dom";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import SignIn from "./pages/Signin";
-import {useState} from "react";
+import React, { useState } from "react";
 import Home from "./pages/Home";
-import firebase from './firebase'
+import firebase from "./firebase";
+import { loadUser } from "./actions";
+import {useDispatch} from "react-redux";
+import Footer from "./components/Footer";
+import Groups from "./components/Groups";
+import ProfileBadge from "./components/ProfileBadge";
+import Notifications from "./components/Notifications";
 
-function App() {
-  const [isUserSignedIn, setIsUserSignedIn] = useState(true)
-  firebase.auth().onAuthStateChanged(user=>{
-    console.log(user)
-    if(user){
-     return setIsUserSignedIn(true)
+
+const db = firebase.firestore()
+
+const App = () => {
+  const dispatch = useDispatch()
+
+  const [isUserSignedIn, setIsUserSignedIn] = useState(true);
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      loadUser(user["_delegate"])(dispatch);
+      return setIsUserSignedIn(true);
     }
-   return setIsUserSignedIn(false)
-  })
+    return setIsUserSignedIn(false);
+  });
 
   return (
-      <div className="App">
-        {isUserSignedIn ?
+    <div className="App">
+      {isUserSignedIn ? (
+        <div className="page-container">
+          <Notifications />
+          <ProfileBadge />
           <Routes>
-            <Route exact path="/" element={<Home/>}/>
-          </Routes> :
-          <Routes>
-            <Route exact path="/" element={<SignIn/>}/>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/groups" element={<Groups/>} />
           </Routes>
-        }
-      </div>
+          <Footer/>
+        </div>
+      ) : (
+        <Routes>
+          <Route exact path="/" element={<SignIn />} />
+        </Routes>
+      )}
+    </div>
   );
 }
 
