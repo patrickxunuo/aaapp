@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Avatar, Badge} from "antd";
 import {useDispatch, useSelector} from "react-redux";
 import firebase from '../../firebase'
-import {showNoti} from "../../actions";
+import {showNoti} from "../../redux/actions";
 
 const ProfileBadge = () => {
   const userInfo = useSelector(s=>s.userReducer)

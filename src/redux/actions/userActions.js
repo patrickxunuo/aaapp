@@ -1,5 +1,5 @@
-import {LOAD_USER, SIGN_OUT} from "../helpers";
-import firebase from '../firebase'
+import {LOAD_USER, SIGN_OUT} from "../../helpers";
+import firebase from '../../firebase'
 import {message} from 'antd'
 
 export const loadUser = userInfo => dispatch => {

@@ -1,4 +1,4 @@
-import {SHOW_NOTI, HIDE_NOTI} from "../helpers";
+import {SHOW_NOTI, HIDE_NOTI} from "../../helpers";
 
 export const showNoti = () => dispatch => {
   dispatch({

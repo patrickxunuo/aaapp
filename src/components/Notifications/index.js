@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from "antd/es/modal/Modal";
 import {useSelector, useDispatch} from "react-redux";
-import {hideNoti} from "../../actions";
+import {hideNoti} from "../../redux/actions";
 
 const Notifications = () => {
   const dispatch = useDispatch()

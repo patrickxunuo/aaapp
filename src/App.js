@@ -4,7 +4,7 @@ import SignIn from "./pages/Signin";
 import React, { useState } from "react";
 import Home from "./pages/Home";
 import firebase from "./firebase";
-import { loadUser } from "./actions";
+import { loadUser } from "./redux/actions";
 import {useDispatch} from "react-redux";
 import Footer from "./components/Footer";
 import Groups from "./components/Groups";

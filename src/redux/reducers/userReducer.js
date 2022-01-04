@@ -1,4 +1,4 @@
-import {LOAD_USER, SIGN_OUT} from "../helpers";
+import {LOAD_USER, SIGN_OUT} from "../../helpers";
 
 const initState = {}
 

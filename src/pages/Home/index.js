@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase'
-import {signOut as userSignOut} from "../../actions";
+import {signOut as userSignOut} from "../../redux/actions";
 import {useSelector, useDispatch} from 'react-redux'
 import {Avatar} from "antd";
 
