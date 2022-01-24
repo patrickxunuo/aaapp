@@ -18,7 +18,6 @@ const reduxStore = createStore(
   devStage ? composeWithDevTools(applyMiddleware(thunk)) : applyMiddleware(thunk)
 )
 
-
 ReactDOM.render(
   <ReduxProvider store={reduxStore}>
     <Router>

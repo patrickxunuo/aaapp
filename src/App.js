@@ -11,7 +11,6 @@ import Groups from "./components/Groups";
 import ProfileBadge from "./components/ProfileBadge";
 import Notifications from "./components/Notifications";
 
-
 const db = firebase.firestore()
 
 const App = () => {
@@ -34,7 +33,7 @@ const App = () => {
           <ProfileBadge />
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/groups" element={<Groups/>} />
+            <Route exact path='/groups/:id' element={<Groups/>} />
           </Routes>
           <Footer/>
         </div>

@@ -1,23 +1,58 @@
-import React from 'react';
-import firebase from '../../firebase'
-import {signOut as userSignOut} from "../../redux/actions";
+import React, {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
-import {Avatar} from "antd";
-
+import {queryStatus} from "./service";
+import {useNavigate } from 'react-router'
+import './styles.css'
+import {Table, TableBody, TableCell, TableHead, TableRow, Link, Backdrop, CircularProgress} from "@mui/material";
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch()
+  const userInfo = useSelector((s) => s.userReducer);
+  const [status, setStatus] = useState(null)
 
-  const signOut = () => {
-    firebase.auth().signOut()
-    userSignOut()(dispatch)
+  const loadStatus = () => {
+    if(userInfo.uid){
+      queryStatus(userInfo.uid).then((res) => {
+        setStatus(res);
+      });
+    }
   }
+
+  useEffect(loadStatus, [userInfo.uid]);
 
   return(
       <>
-        <button onClick={signOut} className="signout-btn btn">
-          Sign Out
-        </button>
+        <div className="status-wrap">
+          <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={status===null}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Group</TableCell>
+                <TableCell>Amount</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {status?.map((stat,index) => (
+                <TableRow
+                  key={index}
+                >
+                  <TableCell>
+                    <Link onClick={()=>navigate(`/groups/${stat.group?.id}`)} >
+                      {stat.group?.name}
+                    </Link>
+                  </TableCell>
+                  <TableCell>{stat.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </>
   )
 }

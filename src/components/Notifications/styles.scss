@@ -1,0 +1,31 @@
+.ant-drawer-body{
+  padding: 0 !important;
+}
+.notification-wrapper{
+  padding: 10px;
+  margin: 5px;
+  border-radius: 0.25em;
+  background-color:#b8c1ec;
+  color: #232946;
+  overflow: hidden;
+  user-select: none;
+
+  .notification-header{
+    &>div{
+      margin-right: 20px;
+    }
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    .notification-from,.notification-date{
+      font-weight: bold;
+    }
+  }
+  .notification-content{
+    font-size: 1.2em;
+  }
+  .notification-footer{
+display: flex;
+    justify-content:flex-end;
+  }
+}

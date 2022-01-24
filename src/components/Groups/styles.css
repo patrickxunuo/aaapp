@@ -1,3 +1,13 @@
+.group-container {
+  width: 90vw;
+  min-height: 60vh;
+  border-radius: 0.25em;
+  background: #fffffe;
+  padding: 10px;
+}
 
+.group-container.loading {
+  filter: blur(2px);
+}
 
 /*# sourceMappingURL=styles.css.map */
