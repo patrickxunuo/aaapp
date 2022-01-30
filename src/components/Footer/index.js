@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./styles.css";
 import { motion} from "framer-motion";
 import {useLocation, useNavigate} from "react-router";
-import {BottomNavigation, BottomNavigationAction, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
+import {BottomNavigation, BottomNavigationAction, Box, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
 import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
@@ -12,6 +12,7 @@ import firebase from "../../firebase";
 import {signOut as userSignOut} from "../../redux/actions";
 import {useDispatch} from "react-redux";
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
+import AddRecordModal from "../AddRecordModal";
 
 const pathVariants = {
   initial: {
@@ -113,6 +114,7 @@ const Footer = () => {
   const dispatch = useDispatch()
   const {pathname} = useLocation()
   const navigate = useNavigate();
+  const [addRecordModalVisible, handleAddRecordModalVisible] = useState(false);
 
 
   const signOut = () => {
@@ -131,10 +133,11 @@ const Footer = () => {
     { icon: <LogoutIcon />, name: 'Sign out', onClick: signOut },
     { icon: <GroupAddIcon />, name: 'Add group' },
     { icon: <PriceCheckIcon />, name: 'Add payment' },
-    { icon: <AddTaskIcon />, name: 'Add record'}
+    { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true)}
   ];
 
   return (
+    <>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
@@ -149,6 +152,10 @@ const Footer = () => {
           />
         ))}
       </SpeedDial>
+      <Box sx={{position: "absolute"}}>
+        <AddRecordModal visible={addRecordModalVisible} onClose={()=>handleAddRecordModalVisible(false)}/>
+      </Box>
+    </>
   );
 }
 
