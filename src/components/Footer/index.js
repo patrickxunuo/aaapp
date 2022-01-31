@@ -127,13 +127,13 @@ const Footer = () => {
   const actions =pathname.includes('groups')? [
     { icon: <LogoutIcon />, name: 'Sign out', onClick: signOut },
     { icon: <PriceCheckIcon />, name: 'Add payment' },
-    { icon: <AddTaskIcon />, name: 'Add record' },
+    { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true) },
     {icon: <HomeIcon/>, name: 'Home', onClick: toHome}
   ]: [
     { icon: <LogoutIcon />, name: 'Sign out', onClick: signOut },
     { icon: <GroupAddIcon />, name: 'Add group' },
-    { icon: <PriceCheckIcon />, name: 'Add payment' },
-    { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true)}
+    // { icon: <PriceCheckIcon />, name: 'Add payment' },
+    // { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true)}
   ];
 
   return (

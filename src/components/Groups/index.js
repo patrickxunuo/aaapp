@@ -64,6 +64,7 @@ const Groups = (props) => {
         <TableHead>
           <TableRow>
             <TableCell>Event</TableCell>
+            <TableCell>Type</TableCell>
             <TableCell>Total Amount</TableCell>
             {
               group?.users?.map((user,index)=>(
@@ -82,6 +83,9 @@ const Groups = (props) => {
             >
               <TableCell>
                   {event.eventName}
+              </TableCell>
+              <TableCell>
+                {event.type}
               </TableCell>
               <TableCell>
                 {event.totalAmount}

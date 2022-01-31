@@ -3,7 +3,16 @@ import {useSelector, useDispatch} from 'react-redux'
 import {queryStatus} from "./service";
 import {useNavigate } from 'react-router'
 import './styles.css'
-import {Table, TableBody, TableCell, TableHead, TableRow, Link, Backdrop, CircularProgress} from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Link,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -41,11 +50,15 @@ const Home = () => {
               {status?.map((stat,index) => (
                 <TableRow
                   key={index}
+                  onClick={()=>navigate(`/groups/${stat.group?.id}`)}
+                  sx={[{cursor: 'pointer', transition: 'all 300ms ease-in-out'},{
+                    '&:hover': {
+                      backgroundColor: '#b8c1ec'
+                    }
+                  }]}
                 >
                   <TableCell>
-                    <Link onClick={()=>navigate(`/groups/${stat.group?.id}`)} >
                       {stat.group?.name}
-                    </Link>
                   </TableCell>
                   <TableCell>{stat.amount}</TableCell>
                 </TableRow>
