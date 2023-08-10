@@ -1,17 +1,24 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./styles.css";
-import { motion} from "framer-motion";
-import {useLocation, useNavigate} from "react-router";
-import {BottomNavigation, BottomNavigationAction, Box, SpeedDial, SpeedDialAction, SpeedDialIcon} from "@mui/material";
-import GroupIcon from '@mui/icons-material/Group';
-import HomeIcon from '@mui/icons-material/Home';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import LogoutIcon from '@mui/icons-material/Logout';
-import AddTaskIcon from '@mui/icons-material/AddTask';
+import { motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router";
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  Box,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+} from "@mui/material";
+import GroupIcon from "@mui/icons-material/Group";
+import HomeIcon from "@mui/icons-material/Home";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AddTaskIcon from "@mui/icons-material/AddTask";
 import firebase from "../../firebase";
-import {signOut as userSignOut} from "../../redux/actions";
-import {useDispatch} from "react-redux";
-import PriceCheckIcon from '@mui/icons-material/PriceCheck';
+import { signOut as userSignOut } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import AddRecordModal from "../AddRecordModal";
 
 const pathVariants = {
@@ -24,14 +31,14 @@ const pathVariants = {
     pathLength: 1,
     transition: {
       duration: 2,
-      ease: 'easeInOut',
-    }
+      ease: "easeInOut",
+    },
   },
   exit: {
     opacity: 0,
     pathLength: 0,
-  }
-}
+  },
+};
 
 // const Footer = () => {
 //   const [page, setPage] = useState("home");
@@ -109,38 +116,42 @@ const pathVariants = {
 //   );
 // };
 
-
 const Footer = () => {
-  const dispatch = useDispatch()
-  const {pathname} = useLocation()
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const [addRecordModalVisible, handleAddRecordModalVisible] = useState(false);
 
-
   const signOut = () => {
-    firebase.auth().signOut()
-    userSignOut()(dispatch)
-  }
+    firebase.auth().signOut();
+    userSignOut()(dispatch);
+  };
 
-  const toHome = () => navigate('/')
+  const toHome = () => navigate("/");
 
-  const actions =pathname.includes('groups')? [
-    { icon: <LogoutIcon />, name: 'Sign out', onClick: signOut },
-    { icon: <PriceCheckIcon />, name: 'Add payment' },
-    { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true) },
-    {icon: <HomeIcon/>, name: 'Home', onClick: toHome}
-  ]: [
-    { icon: <LogoutIcon />, name: 'Sign out', onClick: signOut },
-    { icon: <GroupAddIcon />, name: 'Add group' },
-    // { icon: <PriceCheckIcon />, name: 'Add payment' },
-    // { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true)}
-  ];
+  const actions = pathname.includes("groups")
+    ? [
+        { icon: <LogoutIcon />, name: "Sign out", onClick: signOut },
+        { icon: <PriceCheckIcon />, name: "Add payment" },
+        {
+          icon: <AddTaskIcon />,
+          name: "Add record",
+          onClick: () => handleAddRecordModalVisible(true),
+        },
+        { icon: <HomeIcon />, name: "Home", onClick: toHome },
+      ]
+    : [
+        { icon: <LogoutIcon />, name: "Sign out", onClick: signOut },
+        { icon: <GroupAddIcon />, name: "Add group" },
+        // { icon: <PriceCheckIcon />, name: 'Add payment' },
+        // { icon: <AddTaskIcon />, name: 'Add record', onClick: ()=>handleAddRecordModalVisible(true)}
+      ];
 
   return (
     <>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        sx={{ position: "absolute", bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
       >
         {actions.map((action) => (
@@ -152,11 +163,14 @@ const Footer = () => {
           />
         ))}
       </SpeedDial>
-      <Box sx={{position: "absolute"}}>
-        <AddRecordModal visible={addRecordModalVisible} onClose={()=>handleAddRecordModalVisible(false)}/>
+      <Box sx={{ position: "absolute" }}>
+        <AddRecordModal
+          visible={addRecordModalVisible}
+          onClose={() => handleAddRecordModalVisible(false)}
+        />
       </Box>
     </>
   );
-}
+};
 
 export default Footer;

@@ -1,9 +1,4 @@
-import {loadUser, signOut} from './userActions'
-import {showNoti, hideNoti} from "./notificationActions";
+import { loadUser, signOut } from "./userActions";
+import { showNoti, hideNoti } from "./notificationActions";
 
-export {
-  loadUser,
-  signOut,
-  showNoti,
-  hideNoti,
-}
+export { loadUser, signOut, showNoti, hideNoti };
